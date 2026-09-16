@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula Gratuita | Black Friday com Sabrina & Mariana</title>
+<meta name="description" content="Aula gratuita para construir uma Black Friday que faça sentido para o seu negócio, sem copiar o que todo mundo vai fazer em novembro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== DOBRA 1 — HERO ===================== -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__container">
+
+    <div class="hero__content">
+      <p class="eyebrow">
+        <span class="eyebrow__dot"></span>
+        Aula gratuita &middot; Sabrina Nascimento &amp; Mariana Cerqueira
+      </p>
+
+      <h1 class="hero__title">
+        Faça a Black Friday mais <em>lucrativa</em> da sua história, sem copiar a Black de todo mundo.
+      </h1>
+
+      <p class="hero__subtitle">
+        Uma aula gratuita para mostrar como construir uma Black Friday que faça sentido para o seu negócio e a sua audiência
+        — vendendo e lucrando mais do que nunca — em vez de apenas repetir o que o mercado inteiro vai fazer em novembro.
+      </p>
+
+      <div class="date-badge">
+        <span>SÁBADO</span>
+        <span class="date-badge__sep">•</span>
+        <span>19/09</span>
+        <span class="date-badge__sep">•</span>
+        <span>9H</span>
+      </div>
+    </div>
+
+    <div class="hero__form-wrap">
+      <form class="lead-form" id="leadForm" novalidate>
+        <h2 class="lead-form__title">Garanta sua vaga</h2>
+        <p class="lead-form__subtitle">Vagas limitadas para a turma de 19/09.</p>
+
+        <div class="field">
+          <label for="name">Nome</label>
+          <input type="text" id="name" name="name" placeholder="Digite seu nome" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu melhor e-mail" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="phone">Telefone</label>
+          <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required autocomplete="tel" inputmode="tel">
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block" id="submitBtn">
+          <span>QUERO PARTICIPAR DA AULA</span>
+        </button>
+
+        <p class="lead-form__disclaimer">
+          Acesso à sala secreta apenas pelo grupo do WhatsApp.
+        </p>
+      </form>
+
+      <div class="lead-form__success" id="formSuccess" hidden>
+        <div class="lead-form__success-icon">✓</div>
+        <h2 class="lead-form__title">Inscrição confirmada!</h2>
+        <p>Agora é só entrar no grupo do WhatsApp para receber o acesso à sala secreta da aula.</p>
+        <a href="#" class="btn btn--primary btn--block" id="whatsappLink" target="_blank" rel="noopener">
+          ENTRAR NO GRUPO DO WHATSAPP
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- ===================== DOBRA 2 — AS ESTRATEGISTAS ===================== -->
+<section class="experts">
+  <div class="container">
+
+    <p class="eyebrow eyebrow--center">
+      <span class="eyebrow__dot"></span>
+      Quem vai te ensinar
+    </p>
+
+    <h2 class="experts__title">
+      Duas estrategistas. Anos de bastidores.<br>
+      Uma manhã inteira dedicada à sua Black.
+    </h2>
+
+    <p class="experts__intro">
+      A Black Friday pode ser o momento de maior lucro do seu ano&hellip; ou o de maior frustração!
+      É justamente por isso que repertório, experiência e capacidade de enxergar além da superfície
+      fazem tanta diferença.
+    </p>
+
+    <div class="expert-cards">
+      <article class="expert-card">
+        <div class="expert-card__photo" aria-hidden="true">
+          <span>MC</span>
+        </div>
+        <h3 class="expert-card__name">Mariana Cerqueira</h3>
+        <p class="expert-card__bio">
+          Com 10 anos de bagagem construindo estratégias nos bastidores do mercado digital, Mari já fez parte
+          do <strong>Top 100 de agências parceiras da Hotmart</strong>, ranking que reúne as operações de
+          coprodução e marketing de maior faturamento e volume de vendas da plataforma, e hoje continua
+          atuando diretamente nos bastidores de grandes projetos, incluindo o trabalho com
+          <strong>Luiza Hott</strong>.
+        </p>
+      </article>
+
+      <article class="expert-card">
+        <div class="expert-card__photo" aria-hidden="true">
+          <span>SN</span>
+        </div>
+        <h3 class="expert-card__name">Sabrina Nascimento</h3>
+        <p class="expert-card__bio">
+          Sócia da <strong>Mantora</strong>, Sabrina atua diretamente na construção de estratégias,
+          posicionamento e campanhas para infoprodutores e empresas, em projetos que já geraram
+          <strong>mais de R$7 milhões em vendas</strong> para clientes da sua agência. Ao longo desse
+          caminho, já trabalhou com especialistas renomados como <strong>Ana Jannuzzi, Hosaka e
+          Laércio Refundini</strong>.
+        </p>
+      </article>
+    </div>
+
+    <div class="gallery" aria-label="Galeria com os perfis das experts">
+      <div class="gallery__item"><span>MC</span></div>
+      <div class="gallery__item"><span>SN</span></div>
+      <div class="gallery__item"><span>MC</span></div>
+      <div class="gallery__item"><span>SN</span></div>
+    </div>
+
+    <div class="statement">
+      <p class="statement__text">
+        No dia 19, elas vão usar tudo o que já viveram no digital para ajudar você a construir sua melhor Black.
+      </p>
+      <p class="statement__sub">
+        O objetivo é simples: mostrar como pensar sua Black 2026 de forma mais inteligente desde já,
+        que erros jamais cometer e que plano seguir para chegar a novembro com uma campanha bem montada,
+        autêntica e realmente lucrativa.
+      </p>
+
+      <a href="#leadForm" class="btn btn--primary btn--lg" id="finalCta">
+        ENTRAR NO GRUPO E GARANTIR MEU ACESSO
+      </a>
+      <p class="statement__tag">Gratuito &middot; 19/09 &middot; 9h</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Sabrina Nascimento &amp; Mariana Cerqueira</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
