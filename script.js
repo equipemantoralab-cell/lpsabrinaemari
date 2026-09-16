@@ -1,6 +1,6 @@
 // ---- Configuração -----------------------------------------------------
 // Troque pelo link real do grupo do WhatsApp da turma.
-const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/SEU-LINK-AQUI';
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/CzoNsEnmoXQERbUqT0MWzN';
 
 // URL do Google Apps Script (App da Web) que salva o lead na planilha.
 // Gerada ao implantar google-apps-script/Code.gs (veja instruções no arquivo).
