@@ -134,6 +134,7 @@ a { color: inherit; text-decoration: none; }
 
 .hero__title {
   font-family: var(--font-display);
+  font-variation-settings: 'opsz' 24;
   font-weight: 600;
   font-size: clamp(32px, 4.2vw, 52px);
   line-height: 1.12;
@@ -211,6 +212,7 @@ a { color: inherit; text-decoration: none; }
 
 .lead-form__title {
   font-family: var(--font-display);
+  font-variation-settings: 'opsz' 24;
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 6px;
@@ -309,6 +311,7 @@ a { color: inherit; text-decoration: none; }
 
 .experts__title {
   font-family: var(--font-display);
+  font-variation-settings: 'opsz' 24;
   font-weight: 600;
   font-size: clamp(28px, 3.6vw, 42px);
   line-height: 1.22;
@@ -357,6 +360,7 @@ a { color: inherit; text-decoration: none; }
 
 .expert-card__name {
   font-family: var(--font-display);
+  font-variation-settings: 'opsz' 24;
   font-size: 21px;
   font-weight: 600;
   margin-bottom: 12px;
@@ -466,6 +470,7 @@ a { color: inherit; text-decoration: none; }
 
 .statement__text {
   font-family: var(--font-display);
+  font-variation-settings: 'opsz' 24;
   font-weight: 600;
   font-size: clamp(24px, 3.2vw, 34px);
   line-height: 1.3;
