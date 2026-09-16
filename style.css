@@ -340,21 +340,19 @@ a { color: inherit; text-decoration: none; }
 }
 
 .expert-card__photo {
-  width: 76px;
-  height: 76px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold-dark));
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 20px;
+  border: 2px solid var(--color-gold);
 }
 
-.expert-card__photo span {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
-  color: #14100a;
+.expert-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .expert-card__name {
