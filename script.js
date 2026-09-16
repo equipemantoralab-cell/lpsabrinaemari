@@ -7,6 +7,11 @@ const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/SEU-LINK-AQUI';
 // Deixe null para o formulário funcionar apenas no front-end, sem salvar em lugar nenhum.
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwBgSNR7sQP9akrCUNbzwwKgUlCPNHhrix4IMDqZ1ch5fIdBYl4zH_CL-GcpQ1WnFPz4w/exec';
 
+// Backup local: se o envio pro Apps Script falhar (rede fora do ar, timeout,
+// domínio bloqueado etc.), o lead fica guardado no navegador da pessoa e o
+// site tenta reenviar sozinho na próxima vez que a página carregar.
+const PENDING_LEADS_KEY = 'lpBlackFriday_pendingLeads';
+
 // ---- Máscara de telefone -----------------------------------------------
 const phoneInput = document.getElementById('phone');
 phoneInput.addEventListener('input', () => {
@@ -21,6 +26,72 @@ phoneInput.addEventListener('input', () => {
     phoneInput.value = digits;
   }
 });
+
+// ---- Backup local de leads não confirmados ------------------------------
+function readPendingLeads() {
+  try {
+    return JSON.parse(localStorage.getItem(PENDING_LEADS_KEY)) || [];
+  } catch (err) {
+    return [];
+  }
+}
+
+function savePendingLeads(leads) {
+  try {
+    localStorage.setItem(PENDING_LEADS_KEY, JSON.stringify(leads));
+  } catch (err) {
+    // localStorage indisponível (modo privado, storage cheio etc.) — segue sem backup local.
+  }
+}
+
+function queuePendingLead(data) {
+  const pending = readPendingLeads();
+  pending.push({ ...data, queuedAt: new Date().toISOString() });
+  savePendingLeads(pending);
+}
+
+// Envia um lead pro Apps Script. Usamos mode:"no-cors" porque o Web App do
+// Apps Script não devolve cabeçalhos CORS legíveis pelo fetch — dá pra saber
+// se a requisição saiu da rede com sucesso, mas não dá pra ler a resposta
+// nem detectar um erro interno do script que ainda assim responda HTTP 200.
+// Por isso o timeout abaixo é a única forma prática de pegar falhas (rede
+// fora do ar, endpoint indisponível, bloqueio de rede).
+async function sendLead(data, { timeoutMs = 10000 } = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data),
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+// Tenta reenviar, em segundo plano, leads que ficaram pendentes de uma visita anterior.
+async function flushPendingLeads() {
+  if (!FORM_ENDPOINT) return;
+
+  const pending = readPendingLeads();
+  if (!pending.length) return;
+
+  const stillPending = [];
+  for (const lead of pending) {
+    try {
+      await sendLead(lead);
+    } catch (err) {
+      stillPending.push(lead);
+    }
+  }
+  savePendingLeads(stillPending);
+}
+
+flushPendingLeads();
 
 // ---- Envio do formulário ------------------------------------------------
 const form = document.getElementById('leadForm');
@@ -47,27 +118,23 @@ form.addEventListener('submit', async (event) => {
   submitBtn.disabled = true;
   submitBtn.querySelector('span').textContent = 'ENVIANDO...';
 
-  try {
-    if (FORM_ENDPOINT) {
-      // Apps Script não retorna cabeçalhos CORS legíveis por fetch, então usamos
-      // no-cors: a requisição é enviada e a planilha é atualizada, mas não dá
-      // pra ler a resposta — por isso seguimos direto pra tela de sucesso.
-      await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(data),
-      });
+  if (FORM_ENDPOINT) {
+    try {
+      await sendLead(data);
+    } catch (err) {
+      // Falha de rede/timeout ao salvar na planilha: guarda localmente pra não
+      // perder o lead. O acesso à aula não pode depender disso funcionar.
+      queuePendingLead(data);
     }
-
-    form.hidden = true;
-    formSuccess.hidden = false;
-    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } catch (err) {
-    submitBtn.disabled = false;
-    submitBtn.querySelector('span').textContent = 'QUERO PARTICIPAR DA AULA';
-    alert('Não foi possível enviar seus dados agora. Tente novamente em instantes.');
   }
+
+  form.hidden = true;
+  formSuccess.hidden = false;
+  formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  window.setTimeout(() => {
+    window.location.href = WHATSAPP_GROUP_LINK;
+  }, 1200);
 });
 
 // ---- CTA final rola até o formulário -------------------------------------
