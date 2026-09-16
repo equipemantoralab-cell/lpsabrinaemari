@@ -2,8 +2,9 @@
 // Troque pelo link real do grupo do WhatsApp da turma.
 const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/SEU-LINK-AQUI';
 
-// Endpoint opcional para enviar o lead (webhook do RD Station, ActiveCampaign,
-// Google Sheets, etc.). Deixe null para funcionar apenas no front-end.
+// URL do Google Apps Script (App da Web) que salva o lead na planilha.
+// Gerada ao implantar google-apps-script/Code.gs (veja instruções no arquivo).
+// Deixe null para o formulário funcionar apenas no front-end, sem salvar em lugar nenhum.
 const FORM_ENDPOINT = null;
 
 // ---- Máscara de telefone -----------------------------------------------
@@ -48,9 +49,13 @@ form.addEventListener('submit', async (event) => {
 
   try {
     if (FORM_ENDPOINT) {
+      // Apps Script não retorna cabeçalhos CORS legíveis por fetch, então usamos
+      // no-cors: a requisição é enviada e a planilha é atualizada, mas não dá
+      // pra ler a resposta — por isso seguimos direto pra tela de sucesso.
       await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(data),
       });
     }
