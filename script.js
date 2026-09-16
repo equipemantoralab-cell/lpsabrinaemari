@@ -5,7 +5,7 @@ const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/SEU-LINK-AQUI';
 // URL do Google Apps Script (App da Web) que salva o lead na planilha.
 // Gerada ao implantar google-apps-script/Code.gs (veja instruções no arquivo).
 // Deixe null para o formulário funcionar apenas no front-end, sem salvar em lugar nenhum.
-const FORM_ENDPOINT = null;
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwBgSNR7sQP9akrCUNbzwwKgUlCPNHhrix4IMDqZ1ch5fIdBYl4zH_CL-GcpQ1WnFPz4w/exec';
 
 // ---- Máscara de telefone -----------------------------------------------
 const phoneInput = document.getElementById('phone');
