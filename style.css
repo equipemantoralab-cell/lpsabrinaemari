@@ -375,29 +375,48 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
 }
 
-/* gallery placeholder — trocar por fotos reais das experts */
+.gallery__caption {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 16px;
   margin-bottom: 80px;
 }
 
 .gallery__item {
-  aspect-ratio: 3 / 4;
   border-radius: 10px;
-  border: 1px dashed var(--color-border);
+  border: 1px solid var(--color-border);
   background: var(--color-surface);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 }
 
-.gallery__item span {
-  font-family: var(--font-display);
-  font-size: 20px;
+.gallery__item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(40%);
+  transition: filter 0.2s ease;
+}
+
+.gallery__item:hover img {
+  filter: grayscale(0%);
+}
+
+.gallery__item figcaption {
+  padding: 10px 8px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--color-text-muted);
+  text-align: center;
 }
 
 .statement {
@@ -449,8 +468,10 @@ a { color: inherit; text-decoration: none; }
   .hero { padding: 72px 0 64px; min-height: auto; }
 
   .expert-cards { grid-template-columns: 1fr; }
+}
 
-  .gallery { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 520px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 480px) {
