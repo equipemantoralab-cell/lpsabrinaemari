@@ -123,6 +123,22 @@ a { color: inherit; text-decoration: none; }
   z-index: 0;
 }
 
+/* ---- Página de agradecimento (/obrigado) ---- */
+.thankyou {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.thankyou .container {
+  position: relative;
+  z-index: 1;
+}
+
 .hero__container {
   position: relative;
   z-index: 1;

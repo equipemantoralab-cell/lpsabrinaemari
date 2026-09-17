@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscrição confirmada | Aula Black Friday</title>
+<meta name="robots" content="noindex">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '390183158561837');
+fbq('track', 'PageView');
+fbq('track', 'Lead');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=390183158561837&ev=Lead&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<section class="thankyou">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="lead-form__success" style="max-width: 440px; margin: 0 auto;">
+      <div class="lead-form__success-icon">✓</div>
+      <h1 class="lead-form__title">Inscrição confirmada!</h1>
+      <p>Redirecionando você para o grupo do WhatsApp com o acesso à sala secreta da aula...</p>
+      <a href="#" class="btn btn--primary btn--block" id="whatsappLink" rel="noopener">
+        ENTRAR NO GRUPO DO WHATSAPP AGORA
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  var WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/CzoNsEnmoXQERbUqT0MWzN';
+  document.getElementById('whatsappLink').href = WHATSAPP_GROUP_LINK;
+  window.setTimeout(function () {
+    window.location.href = WHATSAPP_GROUP_LINK;
+  }, 1200);
+</script>
+
+</body>
+</html>

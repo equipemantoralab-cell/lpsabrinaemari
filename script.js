@@ -1,6 +1,6 @@
 // ---- Configuração -----------------------------------------------------
-// Troque pelo link real do grupo do WhatsApp da turma.
-const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/CzoNsEnmoXQERbUqT0MWzN';
+// O link do grupo do WhatsApp fica em obrigado/index.html (é lá que o
+// redirecionamento final acontece, depois do evento de conversão do Pixel).
 
 // URL do Google Apps Script (App da Web) que salva o lead na planilha.
 // Gerada ao implantar google-apps-script/Code.gs (veja instruções no arquivo).
@@ -128,10 +128,6 @@ flushPendingLeads();
 // ---- Envio do formulário ------------------------------------------------
 const form = document.getElementById('leadForm');
 const submitBtn = document.getElementById('submitBtn');
-const formSuccess = document.getElementById('formSuccess');
-const whatsappLink = document.getElementById('whatsappLink');
-
-whatsappLink.href = WHATSAPP_GROUP_LINK;
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -158,13 +154,9 @@ form.addEventListener('submit', async (event) => {
     queuePendingLead(data);
   }
 
-  form.hidden = true;
-  formSuccess.hidden = false;
-  formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-  window.setTimeout(() => {
-    window.location.href = WHATSAPP_GROUP_LINK;
-  }, 1200);
+  // A página /obrigado dispara o evento de conversão do Pixel e depois
+  // redireciona pro WhatsApp.
+  window.location.href = '/obrigado';
 });
 
 // ---- CTA final rola até o formulário -------------------------------------
