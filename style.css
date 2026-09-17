@@ -229,6 +229,17 @@ a { color: inherit; text-decoration: none; }
   text-align: left;
 }
 
+/* Honeypot anti-spam do Netlify Forms: existe no HTML pra enganar bots,
+   mas fica fora da tela pra ninguém real ver ou preencher. */
+.field--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .field label {
   display: block;
   font-size: 12.5px;

@@ -42,7 +42,12 @@
     </div>
 
     <div class="hero__form-wrap">
-      <form class="lead-form" id="leadForm" novalidate>
+      <form class="lead-form" id="leadForm" name="leadForm" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="leadForm">
+        <p class="field field--hidden" aria-hidden="true">
+          <label>Não preencha este campo: <input name="bot-field"></label>
+        </p>
+
         <h2 class="lead-form__title">Garanta sua vaga</h2>
         <p class="lead-form__subtitle">Vagas limitadas para a turma de 19/09.</p>
 
